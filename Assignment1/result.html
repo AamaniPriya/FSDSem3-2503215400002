@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Quiz Result</title>
+
+    <link rel="stylesheet" href="quiz.css">
+
+</head>
+
+<body>
+
+    <div class="result-container">
+
+        <h1>Quiz Completed!</h1>
+
+        <p id="studentName"></p>
+
+        <p id="studentDetails"></p>
+
+        <h2 id="score"></h2>
+
+        <p id="percentage"></p>
+
+        <button onclick="restartQuiz()">
+            Take Quiz Again
+        </button>
+
+    </div>
+
+
+    <script>
+
+        const name =
+            localStorage.getItem("studentName");
+
+        const roll =
+            localStorage.getItem("rollNumber");
+
+        const section =
+            localStorage.getItem("section");
+
+        const score =
+            Number(localStorage.getItem("quizScore"));
+
+        const total =
+            Number(localStorage.getItem("totalQuestions"));
+
+
+        const percentage =
+            (score / total) * 100;
+
+
+        document.getElementById("studentName").innerText =
+            `Name: ${name}`;
+
+        document.getElementById("studentDetails").innerText =
+            `Roll No: ${roll} | Section: ${section}`;
+
+        document.getElementById("score").innerText =
+            `${score} / ${total}`;
+
+        document.getElementById("percentage").innerText =
+            `Percentage: ${percentage.toFixed(2)}%`;
+
+
+        function restartQuiz() {
+
+            localStorage.removeItem("quizScore");
+
+            localStorage.removeItem("totalQuestions");
+
+            window.location.href = "index.html";
+        }
+
+    </script>
+
+</body>
+
+</html>
+
